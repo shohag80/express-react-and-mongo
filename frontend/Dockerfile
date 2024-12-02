@@ -1,4 +1,5 @@
-FROM node:14
+# Use the official Node.js image for building the React app
+FROM node:16 AS build
 
 # Set the working directory inside the container
 WORKDIR ./src/app

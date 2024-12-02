@@ -91,7 +91,7 @@ const updateEmployeeById = async (req, res) => {
 
 // Delete employee by ID
 const deleteEmployeeById = async (req, res) => {
-    const { eid } = req.query;
+    const { eid } = req.params;
     try {
         const employee = await Employee.findByIdAndDelete(eid);
 
@@ -106,22 +106,4 @@ const deleteEmployeeById = async (req, res) => {
     }
 };
 
-
-// Search employees by first name
-const searchEmployee = async (req, res) => {
-    const { firstName } = req.query;
-
-    try {
-        const employees = await Employee.find({ first_name: { $regex: `^${firstName}`, $options: 'i' } });
-
-        if (employees.length === 0) {
-            return res.status(404).json({ message: 'No employees found with the given first name' });
-        }
-
-        res.status(200).json(employees);
-    } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
-    }
-};
-
-module.exports = { getAllEmployees, createEmployee, getEmployeeById, updateEmployeeById, deleteEmployeeById, searchEmployee };
+module.exports = { getAllEmployees, createEmployee, getEmployeeById, updateEmployeeById, deleteEmployeeById };

@@ -1,6 +1,6 @@
 const express = require('express');
 const { signup, login } = require('../controllers/userController');
-const { getAllEmployees, createEmployee, getEmployeeById, updateEmployeeById, deleteEmployeeById, searchEmployee } = require('../controllers/employeeController');
+const { getAllEmployees, createEmployee, getEmployeeById, updateEmployeeById, deleteEmployeeById } = require('../controllers/employeeController');
 const router = express.Router();
 
 // Signup route
@@ -22,9 +22,6 @@ router.get('/api/v1/emp/employees/:eid', getEmployeeById);
 router.put('/api/v1/emp/employees/:eid', updateEmployeeById);
 
 // Route to delete employee by ID
-router.delete('/api/v1/emp/employees', deleteEmployeeById);
-
-// Search employees by first name
-router.get('/employees/search', searchEmployee);
+router.delete('/api/v1/emp/employees/:eid', deleteEmployeeById);
 
 module.exports = router;
